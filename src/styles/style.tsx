@@ -14,9 +14,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 90%;
-  height: 50%;
-  border: 4px solid black;
+  width: 100%;
+  padding: 0 30px;
+  aspect-ratio: 4 / 1;
+  background-color: whitesmoke;
 `;
 
 interface ICarouselProps {
@@ -45,7 +46,11 @@ export const Item = styled.li<{ $gap: number; $showItem: number }>`
   font-family: sans-serif;
 `;
 
-export const Buttons = styled.div`
-  position: absolute;
-  bottom: 50px;
+export const Button = styled.div<{ $position: "left" | "right" }>`
+  position: fixed;
+  left: ${(props) => props.$position === "left" && 0};
+  right: ${(props) => props.$position === "right" && 0};
+  width: 30px;
+  height: 100%;
+  background-color: teal;
 `;
