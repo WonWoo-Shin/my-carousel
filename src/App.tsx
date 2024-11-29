@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Carousel, Container, Item, Wrapper } from "./styles/style";
+import {
+  Button,
+  Carousel,
+  Container,
+  Item,
+  ItemContainer,
+  ItemParent,
+  Wrapper,
+} from "./styles/style";
 
-const itemLength = 14;
+const itemLength = 13;
 const items = Array.from({ length: itemLength }, (_, index) => index + 1);
 const showItem = 6;
 
@@ -11,7 +19,7 @@ export const App = () => {
   const [translate, setTranslate] = useState(0);
   const [isTransition, setIsTransition] = useState(false);
 
-  const itemRef = useRef<HTMLLIElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
 
   const handleCarousel = (direction: "left" | "right") => {
     if (isTransition) return;
@@ -19,8 +27,6 @@ export const App = () => {
     const itemElement = itemRef.current;
     const itemWidth = itemElement?.getBoundingClientRect().width;
     if (!itemWidth) return;
-
-    console.log(itemWidth);
 
     const totalTranslate = (itemWidth + gap) * (itemLength - showItem);
     const maxDistance = (itemWidth + gap) * showItem;
@@ -45,23 +51,25 @@ export const App = () => {
   return (
     <Wrapper>
       <Container>
-        <Button $position="left" onClick={() => handleCarousel("left")}>
+        {/* <Button $position="left" onClick={() => handleCarousel("left")}>
           ◀
-        </Button>
+        </Button> */}
         <Carousel
           $gap={gap}
           $translate={translate}
           onTransitionEnd={() => setIsTransition(false)}
         >
           {items.map((item) => (
-            <Item ref={itemRef} key={item} $gap={gap} $showItem={showItem}>
-              {item}
-            </Item>
+            <ItemContainer key={item} $gap={gap}>
+              <ItemParent>
+                <Item ref={itemRef}>{item}</Item>
+              </ItemParent>
+            </ItemContainer>
           ))}
         </Carousel>
-        <Button $position="right" onClick={() => handleCarousel("right")}>
+        {/* <Button $position="right" onClick={() => handleCarousel("right")}>
           ▶
-        </Button>
+        </Button> */}
       </Container>
     </Wrapper>
   );
