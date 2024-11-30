@@ -27,6 +27,16 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	/* &::-webkit-scrollbar{
+		width: 16px;
+	}
+	&::-webkit-scrollbar-thumb {
+    	height: 56px;
+    	border-radius: 8px;
+    	border: 4px solid transparent;
+    	background-clip: content-box;
+    	background-color: rgba(0,0,0,0.3);
+	} */
 }
 ol, ul {
 	list-style: none;

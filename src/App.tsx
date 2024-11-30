@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Button,
+  Buttons,
   Carousel,
   Container,
   Item,
@@ -9,40 +9,41 @@ import {
   Wrapper,
 } from "./styles/style";
 
-const itemLength = 13;
+const itemLength = 14;
 const items = Array.from({ length: itemLength }, (_, index) => index + 1);
 const showItem = 6;
 
-const gap = 8;
+// 단위 : em
+const gap = 0.5;
+const padding = 3.75;
+const itemWidth = (100 - (padding * 2 + gap * (showItem - 1))) / showItem;
 
 export const App = () => {
   const [translate, setTranslate] = useState(0);
   const [isTransition, setIsTransition] = useState(false);
 
-  const itemRef = useRef<HTMLDivElement>(null);
-
   const handleCarousel = (direction: "left" | "right") => {
     if (isTransition) return;
 
-    const itemElement = itemRef.current;
-    const itemWidth = itemElement?.getBoundingClientRect().width;
-    if (!itemWidth) return;
-
-    const totalTranslate = (itemWidth + gap) * (itemLength - showItem);
-    const maxDistance = (itemWidth + gap) * showItem;
+    const totalScrollableDistance = (itemWidth + gap) * (itemLength - showItem);
+    const maxScollableDistance = (itemWidth + gap) * showItem;
 
     // 스크롤 끝에서 막음
     const isAtEnd =
-      direction === "right" ? translate === totalTranslate : translate === 0;
+      direction === "right"
+        ? translate === totalScrollableDistance
+        : translate === 0;
     if (isAtEnd) return;
+
+    console.log(maxScollableDistance);
 
     // 거리 계산
     const remainDistance =
-      direction === "right" ? totalTranslate - translate : -translate;
+      direction === "right" ? totalScrollableDistance - translate : -translate;
     const distance =
       direction === "right"
-        ? Math.min(remainDistance, maxDistance)
-        : Math.max(remainDistance, -maxDistance);
+        ? Math.min(remainDistance, maxScollableDistance)
+        : Math.max(remainDistance, -maxScollableDistance);
 
     setIsTransition(true);
     setTranslate((prev) => prev + distance);
@@ -51,26 +52,24 @@ export const App = () => {
   return (
     <Wrapper>
       <Container>
-        {/* <Button $position="left" onClick={() => handleCarousel("left")}>
-          ◀
-        </Button> */}
         <Carousel
           $gap={gap}
           $translate={translate}
           onTransitionEnd={() => setIsTransition(false)}
         >
           {items.map((item) => (
-            <ItemContainer key={item} $gap={gap}>
+            <ItemContainer key={item} $width={itemWidth}>
               <ItemParent>
-                <Item ref={itemRef}>{item}</Item>
+                <Item>{item}</Item>
               </ItemParent>
             </ItemContainer>
           ))}
         </Carousel>
-        {/* <Button $position="right" onClick={() => handleCarousel("right")}>
-          ▶
-        </Button> */}
       </Container>
+      <Buttons>
+        <button onClick={() => handleCarousel("left")}>{"<"}</button>
+        <button onClick={() => handleCarousel("right")}>{">"}</button>
+      </Buttons>
     </Wrapper>
   );
 };
