@@ -8,7 +8,13 @@ export const Wrapper = styled.div`
   gap: 30px;
   width: 100%;
   height: 101vh;
-  /* font-size: 0.82646vw; */
+  font-size: 0.82646vw;
+  @media (max-width: 1416px) {
+    font-size: 0.97871vw;
+  }
+  @media (max-width: 1040px) {
+    font-size: 1.20052vw;
+  }
 `;
 
 // 1 vw = 1920px
@@ -23,7 +29,7 @@ export const Container = styled.div<{ $padding: number }>`
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 0px ${(props) => props.$padding}%;
+  padding: 0px ${(props) => props.$padding}em;
 `;
 
 interface ICarouselProps {
@@ -34,16 +40,14 @@ interface ICarouselProps {
 
 export const Carousel = styled.ol<ICarouselProps>`
   display: flex;
-  gap: ${(props) => props.$gap}%;
+  gap: ${(props) => props.$gap}em;
   width: 100%;
   transition: transform 0.75s;
-  transform: translate3d(-${(props) => props.$translate}%, 0, 0);
-  /* transform: translateX(-114em); */
+  transform: translate3d(-${(props) => props.$translate}em, 0, 0);
 `;
 
 export const ItemContainer = styled.li<{ $width: number }>`
-  flex: 0 0 ${(props) => props.$width}%;
-  /* flex: 0 0 10em; */
+  flex: 0 0 ${(props) => props.$width}em;
 `;
 
 export const ItemParent = styled.div`

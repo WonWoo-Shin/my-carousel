@@ -8,19 +8,24 @@ import {
   ItemParent,
   Wrapper,
 } from "./styles/style";
+import { useMediaQuery } from "react-responsive";
 
 const itemLength = 14;
 const items = Array.from({ length: itemLength }, (_, index) => index + 1);
-const showItem = 6;
 
 // 단위 : %
-const padding = 4;
-const gap = 0.5;
-const itemWidth = (100 - gap * (showItem - 1)) / showItem;
+const padding = 3.125;
+const gap = 0.375;
+const itemWidth = 18.625;
 
 export const App = () => {
   const [translate, setTranslate] = useState(0);
   const [isTransition, setIsTransition] = useState(false);
+
+  const isMediumScreen = useMediaQuery({ query: "(max-width: 1416px)" });
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 1040px)" });
+
+  const showItem = isSmallScreen ? 4 : isMediumScreen ? 5 : 6;
 
   const handleCarousel = (direction: "left" | "right") => {
     if (isTransition) return;
