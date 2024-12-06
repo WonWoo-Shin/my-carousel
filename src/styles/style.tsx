@@ -44,6 +44,9 @@ export const Carousel = styled.ol<ICarouselProps>`
   width: 100%;
   transition: transform 0.75s;
   transform: translate3d(-${(props) => props.$translate}em, 0, 0);
+  &.no-transition {
+    transition: none;
+  }
 `;
 
 export const ItemContainer = styled.li<{ $width: number }>`
