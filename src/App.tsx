@@ -63,11 +63,11 @@ export const App = () => {
     setIsTransition(false);
     setCloneItems(() => {
       const copyItems = [...items];
-      const startIndex = carouselLocation / oneBlock - showItem;
-      const endIndex = startIndex + showItem * 3;
+      const startIndex = carouselLocation / oneBlock - showItem - 1;
+      const endIndex = startIndex + showItem * 3 + 2;
       return sliceArray(copyItems, startIndex, endIndex);
     });
-    setTranslate(oneBlock * showItem);
+    setTranslate(oneBlock * showItem + oneBlock);
   };
 
   console.log(cloneItems);
