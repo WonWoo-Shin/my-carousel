@@ -11,10 +11,10 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { sliceArray } from "./sliceArray";
 
-const itemLength = 20;
+const itemLength = 21;
 const items = Array.from({ length: itemLength }, (_, index) => index + 1);
 
-// 단위 : %
+// 단위 : em
 const padding = 3.125;
 const gap = 0.375;
 const itemWidth = 18.625;
@@ -27,6 +27,8 @@ export const App = () => {
   const [translate, setTranslate] = useState(0);
   const [isTransition, setIsTransition] = useState(false);
 
+  const [isCarouselActive, setIsCarouselActive] = useState(false);
+
   const isMediumScreen = useMediaQuery({ query: "(max-width: 1416px)" });
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1040px)" });
   const showItem = isSmallScreen ? 4 : isMediumScreen ? 5 : 6;
@@ -34,15 +36,13 @@ export const App = () => {
   const handleCarousel = (direction: "left" | "right") => {
     if (isTransition) return;
 
+    if (direction === "left" && !isCarouselActive) return;
+
+    setIsTransition(true);
+    setIsCarouselActive(true);
+
     const totalScrollableDistance = oneBlock * (itemLength - showItem);
     const maxScollableDistance = oneBlock * showItem;
-
-    // 스크롤 끝에서 막음
-    const isAtEnd =
-      direction === "right"
-        ? carouselLocation === totalScrollableDistance
-        : carouselLocation === 0;
-    if (isAtEnd) return;
 
     // 거리 계산
     const remainDistance =
@@ -54,7 +54,22 @@ export const App = () => {
         ? Math.min(remainDistance, maxScollableDistance)
         : Math.max(remainDistance, -maxScollableDistance);
 
-    setIsTransition(true);
+    // 스크롤 끝에서 연속 스크롤 적용
+    const isAtEnd =
+      direction === "right"
+        ? carouselLocation === totalScrollableDistance
+        : carouselLocation === 0;
+    if (isAtEnd) {
+      if (direction === "right") {
+        setCarouselLocation(0);
+        setTranslate((prev) => prev + maxScollableDistance);
+      } else {
+        setCarouselLocation(totalScrollableDistance);
+        setTranslate((prev) => prev - maxScollableDistance);
+      }
+      return;
+    }
+
     setCarouselLocation((prev) => prev + distance);
     setTranslate((prev) => prev + distance);
   };
@@ -69,8 +84,6 @@ export const App = () => {
     });
     setTranslate(oneBlock * showItem + oneBlock);
   };
-
-  // console.log(cloneItems);
 
   return (
     <Wrapper>
