@@ -77,3 +77,5 @@ export const Buttons = styled.div`
   justify-content: space-between;
   width: 100px;
 `;
+
+export const Button = styled.div``;

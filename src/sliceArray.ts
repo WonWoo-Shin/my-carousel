@@ -1,12 +1,21 @@
-export const sliceArray = (arr: any[], start: number, end: number) => {
+export const sliceArray = (
+  arr: any[],
+  startIndex: number,
+  endIndex: number
+) => {
   const length = arr.length;
+  const isStartNegative = startIndex < 0;
+  let result: any[] = [];
+  let frontPiece: any[] = [];
 
-  const startIndex = start < 0 ? length + start : start;
-  const endIndex = end > length ? end - length : end;
-
-  if (startIndex >= endIndex) {
-    return arr.slice(startIndex).concat(arr.slice(0, endIndex));
-  } else {
-    return arr.slice(startIndex, endIndex);
+  if (isStartNegative) {
+    frontPiece.push(...arr.slice(startIndex));
   }
+
+  for (let i = isStartNegative ? 0 : startIndex; i < endIndex; i++) {
+    const index = i % length;
+    result.push(arr[index]);
+  }
+
+  return frontPiece.concat(result);
 };

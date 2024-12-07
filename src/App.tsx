@@ -11,7 +11,7 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { sliceArray } from "./sliceArray";
 
-const itemLength = 21;
+const itemLength = 20;
 const items = Array.from({ length: itemLength }, (_, index) => index + 1);
 
 // 단위 : %
@@ -70,7 +70,7 @@ export const App = () => {
     setTranslate(oneBlock * showItem + oneBlock);
   };
 
-  console.log(cloneItems);
+  // console.log(cloneItems);
 
   return (
     <Wrapper>
