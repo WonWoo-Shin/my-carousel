@@ -1,56 +1,31 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 100%;
-  height: 101vh;
-  font-size: 0.82646vw;
-  @media (max-width: 1416px) {
-    font-size: 0.97871vw;
-  }
-  @media (max-width: 1040px) {
-    font-size: 1.20052vw;
-  }
-`;
-
-// 1 vw = 1920px
-//      = 1904px
-// 1em  = 19.2px
-// 100em = 화면 1개
-
-export const Container = styled.div<{ $padding: number }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 0px ${(props) => props.$padding}em;
+  padding: 0 var(--carousel-padding);
+  font-size: 1vw;
 `;
 
 interface ICarouselProps {
-  $gap: number;
-  $padding: number;
   $translate: number;
 }
 
 export const Carousel = styled.ol<ICarouselProps>`
   display: flex;
-  gap: ${(props) => props.$gap}em;
+  flex-wrap: nowrap;
   width: 100%;
   transition: transform 0.75s;
-  transform: translate3d(-${(props) => props.$translate}em, 0, 0);
+  transform: translate3d(-${(props) => props.$translate}%, 0, 0);
   &.no-transition {
     transition: none;
   }
 `;
 
-export const ItemContainer = styled.li<{ $width: number }>`
-  flex: 0 0 ${(props) => props.$width}em;
+export const ItemContainer = styled.li<{ $itemWidth: number }>`
+  flex: 0 0 ${(props) => props.$itemWidth}%;
+  padding: 0 var(--carousel-gap);
 `;
 
 export const ItemParent = styled.div`
@@ -60,22 +35,53 @@ export const ItemParent = styled.div`
 `;
 
 export const Item = styled.div`
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #f2a65e;
-  color: white;
+  border-radius: var(--border-radius);
+  background-color: #48c78e;
+  color: #ffffff;
   font-size: 2em;
-  font-family: sans-serif;
 `;
 
-export const Buttons = styled.div`
+export const ButtonContainer = styled.div`
+  position: absolute;
+  width: calc(var(--carousel-padding) - var(--carousel-gap));
+  height: 100%;
+  z-index: 1;
+  &.left {
+    left: 0;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+  &.right {
+    right: 0;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+  }
+`;
+
+export const Button = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  svg {
+    width: 1.7em;
+    height: 1.7em;
+    color: var(--arrow-color);
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    svg {
+      color: #fff;
+    }
+  }
 `;
-
-export const Button = styled.div``;

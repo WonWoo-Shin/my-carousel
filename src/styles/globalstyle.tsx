@@ -1,6 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+	:root{
+		--padding-width : 3em;
+		--carousel-gap : 0.2vw;
+		--carousel-padding : 60px;
+		--arrow-color : rgba(255, 255, 255, 0.6);
+		--border-radius : 4px;
+		--title-height  : 2.8em;
+		--title-margin : 0.5em;
+		@media (max-width : 1500px){
+			--carousel-padding : 4%;
+		}
+	}
+	
 	html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -27,6 +40,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	overflow-x: hidden;
 	&::-webkit-scrollbar{
 		width: 16px;
 	}
