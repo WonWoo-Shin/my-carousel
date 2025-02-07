@@ -102,6 +102,10 @@ export const ListCarousel = ({ data }: { data: any[] }) => {
 
   //showItem값이 변경된 경우 처리 내용
   useEffect(() => {
+    if (!isScreenOver) {
+      resetCarousel();
+      return;
+    }
     if (isCarouselActive) {
       adjustItem();
     } else {
