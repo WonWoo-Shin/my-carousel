@@ -4,10 +4,8 @@ import { GlobalStyle } from "./styles/globalstyle.tsx";
 import { App } from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  // <StrictMode>
-  <>
+  <StrictMode>
     <GlobalStyle />
     <App />
-  </>
-  // </StrictMode>,
+  </StrictMode>
 );
