@@ -44,3 +44,7 @@ const distance =
     ? Math.min(remainLocatoin, showItem)
     : Math.max(remainLocatoin, -showItem);
 ```
+
+### Demo
+
+[깃허브 페이지](https://wonwoo-shin.github.io/my-carousel/)
