@@ -2,7 +2,7 @@
 
 윈도우 창 크기만큼 컨텐츠를 표시하고, 이동하는 넷플릭스 스타일 캐러셀
 
-### 개발 환경
+### 🔧 개발 환경
 
 - 프로그래밍 언어 : <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
 
@@ -12,7 +12,7 @@
 
 - 스타일링 : <img src="https://img.shields.io/badge/styled components-DB7093?style=flat&logo=styled-components&logoColor=white"/>
 
-### 주요 기능
+### 📌 주요 기능
 
 - **일정한 이동 거리 유지:** 캐러셀이 이동할 때 항상 정해진 개수 만큼 이동
 
@@ -25,7 +25,7 @@
 - **반응형 디자인:** 브라우저 창 크기에 따른 캐러셀의 표시 방법, 슬라이드 애니메이션 적용
   ![반응형](https://github.com/user-attachments/assets/300c9986-03ca-4f50-a2f8-1a587f700df0)
 
-### 주요 코드
+### ⌨ 주요 코드
 
 - 화면에 표시할 컨텐츠 개수 설정
 
@@ -55,6 +55,6 @@ const distance =
     : Math.max(remainLocatoin, -showItem);
 ```
 
-### Demo
+### 📕 Demo
 
 [깃허브 페이지](https://wonwoo-shin.github.io/my-carousel/)
