@@ -1,9 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-
 	:root{
 		--padding-width : 3em;
 		--carousel-gap : 0.2vw;
@@ -44,7 +41,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	overflow-x: hidden;
-	font-family: "Space Grotesk", serif;
+	
 	&::-webkit-scrollbar{
 		width: 16px;
 	}
