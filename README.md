@@ -57,4 +57,4 @@ const distance =
 
 ### 📕 Demo
 
-[깃허브 페이지](https://wonwoo-shin.github.io/my-carousel/)
+[깃허브 페이지]{: target="_blank"}(https://wonwoo-shin.github.io/my-carousel/)
