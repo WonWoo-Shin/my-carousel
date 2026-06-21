@@ -21,6 +21,8 @@
 - **되돌아올 때도 동일한 거리 유지:** 일반적인 캐러셀과 달리, 다시 반대 방향으로 이동할 때도 원래 분량만큼 이동하여 일관성 유지
 
 ![일관성](https://github.com/user-attachments/assets/4d991d89-49b3-443c-a512-e1370992ef78)
+<img width="2505" height="212" alt="Image" src="https://github.com/user-attachments/assets/45b0dbfd-fc79-4f15-8209-8ae2e21233d5" />
+타 라이브러리와 비교
 
 - **반응형 디자인:** 브라우저 창 크기에 따른 캐러셀의 표시 방법, 슬라이드 애니메이션 적용
   ![반응형](https://github.com/user-attachments/assets/300c9986-03ca-4f50-a2f8-1a587f700df0)
